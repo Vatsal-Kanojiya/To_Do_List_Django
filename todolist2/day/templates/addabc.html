@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}day{% endblock title %}
+
+
+{% block nav %}
+<div>
+<table>
+    <tr>
+        <th> <button> <a href=""><b> Day View</b></a> </button></th>
+        <th> <button><a href="">Month View</a></button></th>
+    </tr>
+</table>
+</div>
+
+{% endblock nav %}
+
+
+{% block app %}
+<div>
+    
+    <section>
+ 
+            <div>  
+                <form method="POST">
+                    {% csrf_token %} 
+                    <h3>Add Task</h3> 
+                    {{form}}    
+                    <input type="submit" name="Add" value="Add Task">
+                    
+                </form>
+             
+            </div>
+            
+    </section>
+</div>
+
+{% endblock app %}

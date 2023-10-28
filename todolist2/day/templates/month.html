@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}task edit{% endblock title %}
+
+
+
+
+
+{% block app %}
+<div>
+    <div> 
+        <h1>{{months}} </h1>
+        
+        <form method="POST" action="{% url 'month' %}">
+            {% csrf_token %} 
+            {{formmy.m}}
+            {{formmy.y}}
+            <button type="submit">Go</button>
+                
+        </form>
+    </div><br>
+    <section style="display: grid;grid-template-columns:13% 13% 13% 13% 13% 13% 13%;grid-template-rows: 20% 20% 20% 20% 20%">
+        
+        {% for key, value in month_task_summary.items %}
+        <div style="border: 2px solid blue;padding: 10px;text-align: center;">
+            <a href="{% url 'daym' key month year%}" style='text-decoration: none;'> <h1>{{key}}</h1> </a>
+            <h5>Done: {{ value.0 }}</h5>
+            <h6>Total: {{ value.1 }}</h6>
+
+        </div>
+        {% endfor %}
+
+
+        
+            
+    </section>
+    <section>
+        <h1>Performance Plot for {{months}} </h1>
+        
+        <img src="data:image/png;base64,{{ figure }}" alt="Plot Error">
+    </section>
+</div>
+
+{% endblock app %}

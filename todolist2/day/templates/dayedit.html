@@ -1,0 +1,83 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}task edit{% endblock title %}
+
+
+
+
+
+{% block app %}
+<div>
+    
+    <section>
+        <table>
+            <tr>
+                <th>S. No. </th>
+                <th>Task </th>
+                <th>Status</th>
+                <th></th>
+                
+            </tr>
+            {% for i in day_task1 %}
+            <tr>
+                <td> {{i.order}} </td>
+                <td>{{i.task}} </td>
+                <td>{% if i.status == True %}
+                    Done
+                    {% else %}
+                    Not Done
+                    {% endif %}
+                    </td>
+                <td></td>
+            </tr>
+
+            {% endfor %}
+{% comment %} ############################################################ {% endcomment %}
+            <form method="POST" action="{% url 'edit2' date o %}">
+            {% csrf_token %}   
+            <tr>
+                  
+                <td> {{et.order}} </td>
+                <td colspan='5'>
+                        {{forme.activity}}
+                </td>
+                <td>
+                    {{forme.st}}    
+                </td>
+                <td>
+                    <button type="submit">Edit</button>    
+                </td>
+            
+            </tr>
+            </form>
+
+
+            {% for i in day_task2 %}
+            <tr>
+                <td> {{i.order}} </td>
+                <td>{{i.task}} </td>
+                <td>{% if i.status == True %}
+                    Done
+                    {% else %}
+                    Not Done
+                    {% endif %}
+                    </td>
+                <td></td>
+                
+            </tr>
+
+            {% endfor %}
+
+        </table>    
+            
+            <!-- appname/templates/my_template.html -->
+
+            
+            
+            
+    </section>
+</div>
+
+{% endblock app %}

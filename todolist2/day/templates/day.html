@@ -1,0 +1,98 @@
+
+{% extends 'base.html' %}
+
+
+{% block title %}day{% endblock title %}
+
+
+
+
+
+{% block app %}
+<div style="display: flex;">
+    <section>
+        {% for i in weekdate %}
+        <form method="POST" action="{% url 'day' i %}">
+            {% csrf_token %} 
+            <button type="submit">{{i}}</button>
+                
+            </form>   
+
+        {% endfor %}
+
+
+    </section>
+    
+    <section>
+        <h1> {{date2}} {{day}}</h1>
+
+        <table>
+            <tr>
+                <th>S. No. </th>
+                <th>Task </th>
+                <th>Status</th>
+                <th colspan="4">Actions</th>
+                
+            </tr>
+            {% for i in day_task %}
+            <tr>
+                <td> {{i.order}} </td>
+                <td>{{i.task}} </td>
+                <td>{% if i.status == True %}
+                    Done
+                    {% else %}
+                    Not Done
+                    {% endif %}
+                    </td>
+                <td>
+                    <form method="POST" action="{% url 'edit1' date i.order %}">
+                        {% csrf_token %} 
+                        <button type="submit">Edit</button>
+                            
+                        </form>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'up' date i.order %}">
+                    {% csrf_token %} 
+                    <button type="submit">Up</button>
+                        
+                    </form>
+                </td>
+                <td>
+                        <form method="POST" action="{% url 'down' date i.order %}">
+                        {% csrf_token %} 
+                        <button type="submit">Down</button>
+                            
+                        </form>
+                </td>
+                <td>
+                    <form method="POST" action="{% url 'delete' date i.task %}">
+                    {% csrf_token %} 
+                    <button type="submit">Delete</button>
+                        
+                    </form>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+        </table>    
+            
+            <!-- appname/templates/my_template.html -->
+
+            
+            <div>  
+                <form method="POST" action="{% url 'add' date %}">
+                    {% csrf_token %} 
+                    <h3>Add Task</h3> 
+                    {{form}}    
+                    <button type="submit">Add Task</button>
+                    
+                </form>
+             
+            </div>
+            
+    </section>
+</div>
+
+{% endblock app %}

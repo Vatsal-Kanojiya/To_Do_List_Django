@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock title %}</title>
+</head>
+<body>
+    <div id="body">
+        <h1 id="title">To Do List</h1>
+        <nav>
+
+<div>
+<table>
+    <tr>
+        <th> <button> <a href="{% url 'dayn' %}"> Day View</a> </button></th>
+        <th> <button><a href="{% url 'month' %}">Month View</a></button></th>
+    </tr>
+</table>
+</div>
+
+            
+        </nav>
+
+        <div>
+
+            {% block app %}{% endblock app %}
+
+
+        </div>
+
+    </div>
+    
+</body>
+</html>
